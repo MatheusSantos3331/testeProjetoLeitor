@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca Produtos</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style_login.css">
+    <link rel="stylesheet" href="style-main.css">
+    
+</head>
+<body>
+    <header class="container">
+        <div class="imagem-logo">
+            <a class="imagem-header" href="login.html"><img src="imgs/athena-software-logo@2x.png" alt="Imagem logo Athenas Software"></a>
+        </div>
+    </header>
+    <main class="container-main">
+        <div class="opcoes">
+            <h2>Escolha a opção de verificação</h2>
+            <button>Codigo de barras</button>
+            <button>Codigo interno</button>
+            <button>Nome</button>
+
+        </div>
+        <div class="resultados">
+            <h2>Verificar</h2>
+            <div id="resultado"></div>
+            <div id="camera"></div>
+
+        </div>
+        <script src="quagga.min.js"></script>
+
+    <script>
+
+        Quagga.init({
+            inputStream: {
+                name: "Live",
+                type: "LiveStream",
+                target: document.querySelector('#camera')
+            },
+            decoder: {
+                readers: ["code_128_reader"]
+            }
+        }, function (err) {
+            if (err) {
+                console.log(err);
+                return
+            }
+            console.log("Initialization finished. Ready to start");
+            Quagga.start();
+        });
+
+        Quagga.onDetected(function (data) {
+            console.log(data.codeResult.code);
+            document.querySelector('#resultado').innerText = data.codeResult.code;
+        });
+
+    </script>
+    </main>
+</body>
+</html>
