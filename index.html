@@ -7,7 +7,7 @@
     <title>Busca Produtos</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style_login.css">
-    <link rel="stylesheet" href="style-main.css">
+    <link rel="stylesheet" href="css/style-main.css">
     
 </head>
 <body>
@@ -19,45 +19,29 @@
     <main class="container-main">
         <div class="opcoes">
             <h2>Escolha a opção de verificação</h2>
-            <button>Codigo de barras</button>
-            <button>Codigo interno</button>
-            <button>Nome</button>
+            <button  onclick="mostrarCamera()">Codigo de barras</button>
+            <button onclick="mostrarInputs('codigoInterno')">Código interno</button>
+  <button onclick="mostrarInputs('nomeProduto')">Nome</button>
 
         </div>
         <div class="resultados">
             <h2>Verificar</h2>
             <div id="resultado"></div>
-            <div id="camera"></div>
+            <div  id="camera" style="display: none;"></div>
+            <div class="codigo-interno">
+                <input id="codigoInternoInput" class="escondido" placeholder="Digite o Código Interno do Produto" type="text" style="display: none;">
+                <button id="codigoInternoButton" class="escondido btn-pesquisa" style="display: none;">Pesquisar</button>
+              </div>
+              
+              <div class="nome-produto">
+                <input id="nomeProdutoInput" class="escondido" placeholder="Digite o nome do produto" type="text" style="display: none;">
+                <button  id="nomeProdutoButton" class="btn-pesquisa escondido" style="display: none">Pesquisar</button>
+              </div>
 
         </div>
-        <script src="quagga.min.js"></script>
-
-    <script>
-
-        Quagga.init({
-            inputStream: {
-                name: "Live",
-                type: "LiveStream",
-                target: document.querySelector('#camera')
-            },
-            decoder: {
-                readers: ["code_128_reader"]
-            }
-        }, function (err) {
-            if (err) {
-                console.log(err);
-                return
-            }
-            console.log("Initialization finished. Ready to start");
-            Quagga.start();
-        });
-
-        Quagga.onDetected(function (data) {
-            console.log(data.codeResult.code);
-            document.querySelector('#resultado').innerText = data.codeResult.code;
-        });
-
-    </script>
     </main>
+    <script src="scripts/quagga.min.js"></script>
+    <script src="scripts/leitorBarras.js"></script>
+    <script src="scripts/mostrarElementos.js"></script>
 </body>
 </html>
