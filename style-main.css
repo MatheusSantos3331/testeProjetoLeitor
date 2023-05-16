@@ -34,6 +34,31 @@ h2{
     text-align: center;
 }
 .resultados{
-    background-color: beige;
+    background-color: white;
+    text-align: center;
     flex: 80%;
+}
+.codigo-interno, .nome-produto {
+    align-items: center;
+    justify-content: center;
+}
+
+.codigo-interno>input{
+    width: 60%;
+    
+}
+.nome-produto>input{
+    width: 60%;
+}
+.btn-pesquisa{
+    padding: 8px 8px;
+    margin-top: 1%;
+    background-color: #BB0000;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 32;
+    text-align: center;
+}
+.escondido{
+    text-align: center;
 }
